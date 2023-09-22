@@ -1,0 +1,19 @@
+[user]
+	email = chojs990222@gmail.com
+	name = neo
+[init]
+	defaultBranch = main
+[core]
+	autocrlf = input
+  editor=nvim
+  excludesfile = ~/.gitignore.global
+[merge]
+  tool = nvimdiff
+[ui "color"]
+	ui = always
+[color]
+	ui = true
+[github]
+	user = chojs23
+[credential]
+	helper = osxkeychain

@@ -1,0 +1,17 @@
+lastupdatecheck: 0
+recentrepos:
+- /Users/neo
+- /Users/neo/Desktop/fanmaum-api
+- /Users/neo/Desktop/engineeo-app-api
+- /Users/neo/Desktop/example-app
+- /Users/neo/Desktop/Backend
+- /Users/neo/.config/nvim
+- /Users/neo/Documents/rust/warp-rest
+- /Users/neo/Desktop/engineeo-server
+startuppopupversion: 5
+customcommandshistory:
+- git remote add origin https://github.com/chojs23/dotfiles.git
+- git add
+- git remote add origin https://github.com/chojs23/warp_rest.git
+hidecommandlog: false
+ignorewhitespaceindiffview: false
