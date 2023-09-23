@@ -2,10 +2,10 @@ lastupdatecheck: 0
 recentrepos:
 - /Users/neo
 - /Users/neo/Desktop/fanmaum-api
+- /Users/neo/.config/nvim
 - /Users/neo/Desktop/engineeo-app-api
 - /Users/neo/Desktop/example-app
 - /Users/neo/Desktop/Backend
-- /Users/neo/.config/nvim
 - /Users/neo/Documents/rust/warp-rest
 - /Users/neo/Desktop/engineeo-server
 startuppopupversion: 5
