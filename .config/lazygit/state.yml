@@ -1,14 +1,18 @@
 lastupdatecheck: 0
 recentrepos:
-- /Users/neo/Documents/rust/zero2prod
 - /Users/neo
-- /Users/neo/Desktop/fanmaum-api
 - /Users/neo/.config/nvim
-- /Users/neo/Desktop/engineeo-app-api
-- /Users/neo/Desktop/example-app
+- /Users/neo/Desktop/NudgeCommunityApi
 - /Users/neo/Desktop/Backend
-- /Users/neo/Documents/rust/warp-rest
+- /Users/neo/Desktop/engineeo-app-api
+- /Users/neo/Desktop/fanplus-api
+- /Users/neo/Desktop/fanmaum-api
+- /Users/neo/Desktop/memoryword-api
 - /Users/neo/Desktop/engineeo-server
+- /Users/neo/Desktop/example-app
+- /Users/neo/Documents/rust/realworld-rust-actix-prisma
+- /Users/neo/Documents/rust/zero2prod
+- /Users/neo/Documents/rust/warp-rest
 startuppopupversion: 5
 customcommandshistory:
 - git remote add origin https://github.com/chojs23/dotfiles.git
