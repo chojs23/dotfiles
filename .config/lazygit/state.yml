@@ -1,11 +1,11 @@
 lastupdatecheck: 0
 recentrepos:
 - /Users/neo
+- /Users/neo/.config/nvim
 - /Users/neo/Documents/work/NudgeCommunityApi
 - /Users/neo/Desktop/Backend
 - /Users/neo/Documents/work/fanmaum-api
 - /Users/neo/Documents/work/fanplus-api
-- /Users/neo/.config/nvim
 - /Users/neo/Documents/rust/realworld-rust-actix-prisma
 - /Users/neo/Documents/rust/zero2prod
 - /Users/neo/Documents/rust/warp-rest
