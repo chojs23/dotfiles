@@ -92,6 +92,9 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/autojump/autojump.zsh
 
+# zsh vi mode
+source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -157,3 +160,5 @@ eval "$(jenv init -)"
 
 # Run neofetch
 # neofetch
+
+

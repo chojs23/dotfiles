@@ -1,15 +1,11 @@
 lastupdatecheck: 0
 recentrepos:
 - /Users/neo
-- /Users/neo/.config/nvim
-- /Users/neo/Desktop/NudgeCommunityApi
+- /Users/neo/Documents/work/NudgeCommunityApi
 - /Users/neo/Desktop/Backend
-- /Users/neo/Desktop/engineeo-app-api
-- /Users/neo/Desktop/fanplus-api
-- /Users/neo/Desktop/fanmaum-api
-- /Users/neo/Desktop/memoryword-api
-- /Users/neo/Desktop/engineeo-server
-- /Users/neo/Desktop/example-app
+- /Users/neo/Documents/work/fanmaum-api
+- /Users/neo/Documents/work/fanplus-api
+- /Users/neo/.config/nvim
 - /Users/neo/Documents/rust/realworld-rust-actix-prisma
 - /Users/neo/Documents/rust/zero2prod
 - /Users/neo/Documents/rust/warp-rest
