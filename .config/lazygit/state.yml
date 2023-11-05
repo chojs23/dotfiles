@@ -1,6 +1,7 @@
 lastupdatecheck: 0
 recentrepos:
 - /Users/neo
+- /Users/neo/Documents/rust/codecrafters-http-server-rust
 - /Users/neo/.config/nvim
 - /Users/neo/Documents/work/NudgeCommunityApi
 - /Users/neo/Desktop/Backend
@@ -11,8 +12,10 @@ recentrepos:
 - /Users/neo/Documents/rust/warp-rest
 startuppopupversion: 5
 customcommandshistory:
+- git commit --allow-empty -m "test" && git push origin master
 - git remote add origin https://github.com/chojs23/dotfiles.git
 - git add
 - git remote add origin https://github.com/chojs23/warp_rest.git
+- git push private master
 hidecommandlog: false
 ignorewhitespaceindiffview: false
