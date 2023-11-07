@@ -1,11 +1,12 @@
 lastupdatecheck: 0
 recentrepos:
 - /Users/neo
-- /Users/neo/Documents/rust/codecrafters-http-server-rust
-- /Users/neo/.config/nvim
 - /Users/neo/Documents/work/NudgeCommunityApi
-- /Users/neo/Desktop/Backend
+- /Users/neo/.config/nvim
+- /Users/neo/Documents/work/engineeo-app-api
 - /Users/neo/Documents/work/fanmaum-api
+- /Users/neo/Desktop/Backend
+- /Users/neo/Documents/rust/codecrafters-http-server-rust
 - /Users/neo/Documents/work/fanplus-api
 - /Users/neo/Documents/rust/realworld-rust-actix-prisma
 - /Users/neo/Documents/rust/zero2prod
