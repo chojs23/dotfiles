@@ -10,8 +10,7 @@
 !.config/iterm/
 !.config/iterm/**/*
 !.config/lazygit/
-!.config/lazygit/**/*
-.config/lazygit/state.yml
+!.config/lazygit/config.yml
 
 
 
