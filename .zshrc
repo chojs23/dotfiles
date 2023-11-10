@@ -1,6 +1,10 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=/Users/neo/.local/bin:$PATH
+# export PATH=/Users/neo/.cargo/bin:$PATH
+#
+# export RUST_SRC_PATH=/Users/neo/.rustup/toolchains/stable-aarch64-apple-darwin/lib/rustlib/src/rust/src
+
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"

@@ -5,3 +5,4 @@ else
 fi
 
 export EDITOR="$VISUAL"
+. "$HOME/.cargo/env"
