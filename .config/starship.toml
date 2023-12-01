@@ -1,0 +1,49 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# A minimal left prompt
+format = """$all"""
+# format = """\
+# $time\
+# $directory\
+# $git_branch\
+# $git_status\
+# $git_metrics\
+# $character\
+# """
+
+# move the rest of the prompt to the right
+# right_format = """$time"""
+
+# Inserts a blank line between shell prompts
+add_newline = false
+
+# Replace the '❯' symbol in the prompt with '➜'
+[character] # The name of the module we are configuring is 'character'
+# success_symbol = '[➜](bold green)' # The 'success_symbol' segment is being set to '➜' with the color 'bold green'
+success_symbol = '[\$](bold green)' # The 'error_symbol' segment is being set to '✗' with the color 'bold red'
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+[directory]
+truncation_length = 0
+
+[time]
+disabled = false
+format = '[$time](white) '
+time_format = '%T'
+utc_time_offset = '+9'
+
+[username]
+style_user = 'white bold'
+style_root = 'black bold'
+format = '[$user]($style)'
+disabled = false
+show_always = true
+
+[localip]
+ssh_only = false
+format = '@[$localipv4](white) '
+disabled = false

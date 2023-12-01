@@ -44,7 +44,7 @@ export EDITOR='nvim'
 export VISUAL="$EDITOR"
 
 alias vi="nvim"
-alias ls='exa --icons -F -H --group-directories-first --git -1'
+alias ls='eza --icons -F -H --group-directories-first --git'
 alias ll='ls -alF'
 
 # nvm

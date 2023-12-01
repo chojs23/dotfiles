@@ -11,6 +11,7 @@
 !.config/iterm/**/*
 !.config/lazygit/
 !.config/lazygit/config.yml
+!.config/starship.toml
 
 
 
