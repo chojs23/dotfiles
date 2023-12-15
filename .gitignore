@@ -25,6 +25,7 @@
 !.gitconfig
 !.gitignore
 !.gitignore.global
+!is_vim.sh
 
 !Atom_One_Dark__Material__copy.icls
 !One_Dark_Vivid_copy.icls
