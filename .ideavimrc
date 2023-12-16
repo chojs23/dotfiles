@@ -77,7 +77,7 @@ set commentary
 set easymotion
 
 nnoremap <leader>rr :source ~/.ideavimrc<CR>
-
+nnoremap <esc><esc> :noh<return>
 " easy system clipboard copy/paste
 noremap y "*y
 noremap Y "*Y
@@ -96,7 +96,7 @@ vnoremap H ^
 vnoremap L $
 
 """ Window management & navigation
-nmap <leader>sr <Action>(SplitVertically)
+nmap <leader>ws <Action>(SplitVertically)
 nmap <C-h> <C-w><C-h>
 nmap <C-l> <C-w><C-l>
 
@@ -126,6 +126,12 @@ nnoremap <leader>e :NERDTreeToggle<CR>
 
 " Terminal
 nnoremap <C-/> :action ActivateTerminalToolWindow<cr>
+
+"Git
+nnoremap <leader>gg :action ActivateCommitToolWindow<CR>
+
+"Error
+nmap <leader>cd <Action>(ShowErrorDescription)
 
 "" Multiple cursors
 map <C-n> <Plug>NextWholeOccurrence
@@ -164,9 +170,8 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
-nnoremap <Tab> :action NextTab<CR>
-nnoremap <S-Tab> :action PreviousTab<CR>
-nnoremap <leader>x :action CloseEditor<CR>
+"nnoremap <Tab> :action NextTab<CR>
+"nnoremap <S-Tab> :action PreviousTab<CR>
 
 " NERDTree
 let g:NERDTreeMapJumpParent="h"
