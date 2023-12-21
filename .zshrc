@@ -1,5 +1,3 @@
-# CodeWhisperer pre block. Keep at the top of this file.
-[[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.pre.zsh"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=/Users/neo/.local/bin:$PATH
@@ -29,7 +27,7 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-# source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /opt/homebrew/share/autojump/autojump.zsh
@@ -51,7 +49,7 @@ alias ls='eza --icons -F -H --group-directories-first --git'
 alias ll='ls -alF'
 
 # nvm
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+export NVM_DIR="${HOME}/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # #pyenv
@@ -72,6 +70,3 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 # neofetch
 
 eval "$(starship init zsh)"
-
-# CodeWhisperer post block. Keep at the bottom of this file.
-[[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh"

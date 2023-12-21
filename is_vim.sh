@@ -2,6 +2,7 @@
 # For code whisperer with vim tmux
 # Usage: is_vim.sh <tty>
 #   tty: Specify tty to check for vim process.
+#   replace is_vim="~/is_vim.sh '#{pane_tty}'"
 tty=$1
 
 # Construct process tree.

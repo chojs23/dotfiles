@@ -14,12 +14,15 @@ RUN apt-get update && apt-get install -y \
 # Install Rust
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
+RUN cargo install eza
 
+# Install nvm
 RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+RUN . ~/.nvm/nvm.sh && nvm install 20
 
 # Install dependencies
 RUN apt-get install -y \
-  ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip git
+  ninja-build gettext libtool libtool-bin autoconf automake cmake g++ pkg-config unzip
 
 # Clone Neovim repository and checkout master branch
 RUN git clone https://github.com/neovim/neovim.git \
@@ -49,8 +52,14 @@ RUN curl -sS https://starship.rs/install.sh | sh -s -- -y
 RUN set -eux; \
   git clone https://github.com/chojs23/neovim.dotfile.git; \
   git clone https://github.com/chojs23/dotfiles.git; \
-  cp -av dotfiles/. /root/; \
+  cp -av dotfiles/. /root/ && rm -rf dotfiles;\
   mv neovim.dotfile/* ~/.config/nvim/ && rm -rf neovim.dotfile;
+
+RUN set -eux; \
+  LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*');\
+  curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz";\
+  tar xf lazygit.tar.gz lazygit;\
+  install lazygit /usr/local/bin
 
 
 RUN chsh -s /usr/bin/zsh root
