@@ -35,7 +35,7 @@ set number " Print line number
 set pumblend=10 " Popup blend
 set pumheight=10 " Maximum number of entries in a popup
 set relativenumber " Relative line numbers
-set scrolloff=8 " Lines of context
+set scrolloff=5 " Lines of context
 set sessionoptions=buffers,curdir,tabpages,winsize,help,globals,skiprtp,folds
 set shiftround " Round indent
 set shiftwidth=2 " Size of an indent
@@ -62,7 +62,6 @@ set virtualedit=block " Allow cursor to move where there is no text in visual bl
 set wildmode=longest:full,full " Command-line completion mode
 set winminwidth=5 " Minimum window width
 set wrap " Disable line wrap
-"set guicursor=i:block
 set guicursor=n-v-c-i:block
 
 " ================================================================================================
@@ -73,8 +72,23 @@ set guicursor=n-v-c-i:block
 "=========="
 set NERDTree
 set surround
+set multiple-cursors
 set commentary
 set easymotion
+
+
+""" Idea specific settings ------------------
+set ideajoin
+set ideastatusicon=gray
+set idearefactormode=keep
+
+set which-key
+
+" disable the timeout option
+set notimeout
+
+" increase the timeoutlen (default: 1000), don't add space around the equal sign
+set timeoutlen=5000
 
 nnoremap <leader>rr :source ~/.ideavimrc<CR>
 nnoremap <esc><esc> :noh<return>
@@ -87,7 +101,6 @@ noremap P "*P
 nnoremap S :w!<CR>
 nnoremap Q :q!<CR>
 
-nmap <C-a> ggVG
 nmap ;l :nohl<cr>
 
 nnoremap H ^
@@ -133,13 +146,13 @@ nnoremap <leader>gg :action ActivateCommitToolWindow<CR>
 "Error
 nmap <leader>cd <Action>(ShowErrorDescription)
 
-"" Multiple cursors
-map <C-n> <Plug>NextWholeOccurrence
+" Multiple cursors
+map <Cn> <Plug>NextWholeOccurrence
 
 ""LSP
 nnoremap gd :action GotoDeclaration<CR>
 nnoremap gr :action FindUsages<CR>
-nnoremap gi :action GotoImplementation<CR>
+nnoremap gI :action GotoImplementation<CR>
 nnoremap <leader>ls :action FileStructurePopup<CR>
 nnoremap <leader>lf :action ReformatCode<CR>
 vnoremap <leader>lf :action ReformatCode<CR>
