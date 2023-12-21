@@ -17,7 +17,7 @@
 
 !.Brewfile
 !.zshrc
-!.zshenv
+# !.zshenv
 !.tmux.conf
 !.vimrc
 !iterm2.Profiles.json
