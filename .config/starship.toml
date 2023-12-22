@@ -45,5 +45,10 @@ show_always = true
 
 [localip]
 ssh_only = false
-format = '@[$localipv4](white) '
+format = '@[$localipv4](yellow) '
+disabled = false
+
+[hostname]
+ssh_only = false
+format = '[$ssh_symbol](blue) on [$hostname](white) '
 disabled = false
