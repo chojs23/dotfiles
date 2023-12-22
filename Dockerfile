@@ -50,12 +50,12 @@ RUN apt-get update && apt-get install -y zsh \
 RUN mkdir ~/.zsh-plugins \
   && cd ~/.zsh-plugins \
   && git clone https://github.com/zsh-users/zsh-syntax-highlighting.git \
-  && git clone https://github.com/zsh-users/zsh-autosuggestions \
-  && git clone https://github.com/marlonrichert/zsh-autocomplete.git \
-  # && git clone https://github.com/wting/autojump.git \
-  # && cd autojump \
-  # && ./install.py \
-  && echo "skip_global_compinit=1" >> ~/.zshenv
+  && git clone https://github.com/zsh-users/zsh-autosuggestions
+# && git clone https://github.com/marlonrichert/zsh-autocomplete.git \
+# && git clone https://github.com/wting/autojump.git \
+# && cd autojump \
+# && ./install.py \
+# && echo "skip_global_compinit=1" >> ~/.zshenv
 
 # Install tmux and tpm
 RUN apt-get update && apt-get install -y tmux \
