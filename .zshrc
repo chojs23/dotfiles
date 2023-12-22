@@ -7,6 +7,8 @@ export PATH=/Users/neo/.local/bin:$PATH
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+export ZSH_PLUGINS="$HOME/.zsh-plugins"
+
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # ZSH_THEME="powerlevel9k/powerlevel9k"
@@ -29,10 +31,13 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
-source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /opt/homebrew/share/autojump/autojump.zsh
+# source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+source $ZSH_PLUGINS/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+# source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source /opt/homebrew/share/autojump/autojump.zsh
 # zsh vi mode
 # source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
