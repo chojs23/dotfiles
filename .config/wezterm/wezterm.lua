@@ -23,8 +23,8 @@ config.colors = {
 
 config.color_scheme = "Tokyo Night"
 config.font = wezterm.font_with_fallback({
-	{ family = "IosevkaTermSlab Nerd Font", scale = 1.24, weight = "Medium" },
-	{ family = "CaskaydiaCove Nerd Font", scale = 1.2 },
+	{ family = "IosevkaTermSlab Nerd Font", scale = 1.1, weight = "Regular" },
+	{ family = "CaskaydiaCove Nerd Font", scale = 1.1 },
 })
 -- config.window_background_opacity = 0.9
 config.window_decorations = "RESIZE"
@@ -38,6 +38,55 @@ config.inactive_pane_hsb = {
 	brightness = 0.5,
 }
 
+-- navigator
+-- if you are *NOT* lazy-loading smart-splits.nvim (recommended)
+local function is_vim(pane)
+	-- this is set by the plugin, and unset on ExitPre in Neovim
+	return pane:get_user_vars().IS_NVIM == "true"
+end
+
+-- if you *ARE* lazy-loading smart-splits.nvim (not recommended)
+-- you have to use this instead, but note that this will not work
+-- in all cases (e.g. over an SSH connection). Also note that
+-- `pane:get_foreground_process_name()` can have high and highly variable
+-- latency, so the other implementation of `is_vim()` will be more
+-- performant as well.
+-- local function is_vim(pane)
+-- 	-- This gsub is equivalent to POSIX basename(3)
+-- 	-- Given "/foo/bar" returns "bar"
+-- 	-- Given "c:\\foo\\bar" returns "bar"
+-- 	local process_name = string.gsub(pane:get_foreground_process_name(), "(.*[/\\])(.*)", "%2")
+-- 	return process_name == "nvim" or process_name == "vim"
+-- end
+
+local direction_keys = {
+	h = "Left",
+	j = "Down",
+	k = "Up",
+	l = "Right",
+}
+
+local function split_nav(resize_or_move, key)
+	return {
+		key = key,
+		mods = resize_or_move == "resize" and "META" or "CTRL",
+		action = wezterm.action_callback(function(win, pane)
+			if is_vim(pane) then
+				-- pass the keys through to vim/nvim
+				win:perform_action({
+					SendKey = { key = key, mods = resize_or_move == "resize" and "META" or "CTRL" },
+				}, pane)
+			else
+				if resize_or_move == "resize" then
+					win:perform_action({ AdjustPaneSize = { direction_keys[key], 3 } }, pane)
+				else
+					win:perform_action({ ActivatePaneDirection = direction_keys[key] }, pane)
+				end
+			end
+		end),
+	}
+end
+
 -- Keys
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 config.keys = {
@@ -49,10 +98,10 @@ config.keys = {
 	-- Pane keybindings
 	{ key = "-", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
 	{ key = "|", mods = "LEADER|SHIFT", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-	{ key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
-	{ key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
-	{ key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
-	{ key = "l", mods = "LEADER", action = act.ActivatePaneDirection("Right") },
+	-- { key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
+	-- { key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
+	-- { key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
+	-- { key = "l", mods = "LEADER", action = act.ActivatePaneDirection("Right") },
 	{ key = "x", mods = "LEADER", action = act.CloseCurrentPane({ confirm = true }) },
 	{ key = "z", mods = "LEADER", action = act.TogglePaneZoomState },
 	{ key = "o", mods = "LEADER", action = act.RotatePanes("Clockwise") },
@@ -63,6 +112,17 @@ config.keys = {
 		mods = "LEADER",
 		action = act.ActivateKeyTable({ name = "resize_pane", one_shot = false }),
 	},
+
+	-- move between split panes
+	split_nav("move", "h"),
+	split_nav("move", "j"),
+	split_nav("move", "k"),
+	split_nav("move", "l"),
+	-- resize panes
+	split_nav("resize", "h"),
+	split_nav("resize", "j"),
+	split_nav("resize", "k"),
+	split_nav("resize", "l"),
 
 	-- Tab keybindings
 	{ key = "t", mods = "LEADER", action = act.SpawnTab("CurrentPaneDomain") },
