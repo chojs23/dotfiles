@@ -12,6 +12,8 @@
 !.config/lazygit/
 !.config/lazygit/config.yml
 !.config/starship.toml
+!.config/wezterm
+!.config/wezterm/*
 
 
 
