@@ -23,7 +23,16 @@ config.colors = {
 
 config.color_scheme = "Tokyo Night"
 config.font = wezterm.font_with_fallback({
-	{ family = "IosevkaTermSlab Nerd Font", scale = 1.1, weight = "Regular" },
+	{
+		family = "IosevkaTermSlab Nerd Font",
+		scale = 1.1,
+		weight = "Regular",
+		harfbuzz_features = {
+			"calt=0",
+			"clig=0",
+			"liga=0",
+		},
+	},
 	{ family = "CaskaydiaCove Nerd Font", scale = 1.1 },
 })
 -- config.window_background_opacity = 0.9
@@ -215,7 +224,7 @@ wezterm.on("update-status", function(window, pane)
 	cmd = cmd and basename(cmd) or ""
 
 	-- Time
-	local time = wezterm.strftime("%H:%M")
+	local time = wezterm.strftime_utc("%Y-%m-%d %H:%M:%S")
 
 	-- Left status (left of the tab line)
 	window:set_left_status(wezterm.format({
@@ -235,7 +244,7 @@ wezterm.on("update-status", function(window, pane)
 		{ Text = wezterm.nerdfonts.fa_code .. "  " .. cmd },
 		"ResetAttributes",
 		{ Text = " | " },
-		{ Text = wezterm.nerdfonts.md_clock .. "  " .. time },
+		{ Text = wezterm.nerdfonts.md_clock .. "  " .. time .. " UTC" },
 		{ Text = "  " },
 	}))
 end)
