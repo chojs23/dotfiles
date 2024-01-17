@@ -8,7 +8,7 @@ if wezterm.config_builder then
 end
 
 config.font = wezterm.font("IosevkaTermSlab Nerd Font")
-config.font_size = 16.0
+config.font_size = 18.0
 
 config.default_cursor_style = "BlinkingBlock"
 config.cursor_blink_ease_in = "Constant"
@@ -24,16 +24,16 @@ config.colors = {
 config.color_scheme = "Tokyo Night"
 config.font = wezterm.font_with_fallback({
 	{
-		family = "IosevkaTermSlab Nerd Font",
+		family = "Iosevka Nerd Font",
 		scale = 1.1,
-		weight = "Regular",
+		weight = "Light",
 		harfbuzz_features = {
 			"calt=0",
 			"clig=0",
 			"liga=0",
 		},
 	},
-	{ family = "CaskaydiaCove Nerd Font", scale = 1.1 },
+	-- { family = "CaskaydiaCove Nerd Font", scale = 1.1 },
 })
 -- config.window_background_opacity = 0.9
 config.window_decorations = "RESIZE"

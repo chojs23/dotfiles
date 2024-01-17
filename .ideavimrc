@@ -125,7 +125,7 @@ map <leader>n <action>(RenameElement)
 
 " easymotion
 nmap s <Plug>(easymotion-f)
-nmap sb  <Plug>(easymotion-F)
+nmap sb <Plug>(easymotion-F)
 
 nmap <leader>ff <action>(GotoFile)
 nmap <leader>ft <action>(FindInPath)
@@ -147,7 +147,7 @@ nnoremap <leader>gg :action ActivateCommitToolWindow<CR>
 nmap <leader>cd <Action>(ShowErrorDescription)
 
 " Multiple cursors
-map <Cn> <Plug>NextWholeOccurrence
+map <C-n> <Plug>NextWholeOccurrence
 
 ""LSP
 nnoremap gd :action GotoDeclaration<CR>
