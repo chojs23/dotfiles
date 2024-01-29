@@ -7,7 +7,7 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
-config.font = wezterm.font("IosevkaTermSlab Nerd Font")
+config.font = wezterm.font("Iosevka Nerd Font")
 config.font_size = 18.0
 
 config.default_cursor_style = "BlinkingBlock"
@@ -21,7 +21,7 @@ config.colors = {
 	cursor_fg = "#000000",
 }
 
-config.color_scheme = "Tokyo Night"
+config.color_scheme = "deep"
 config.font = wezterm.font_with_fallback({
 	{
 		family = "Iosevka Nerd Font",
@@ -107,10 +107,6 @@ config.keys = {
 	-- Pane keybindings
 	{ key = "-", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
 	{ key = "|", mods = "LEADER|SHIFT", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-	-- { key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
-	-- { key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
-	-- { key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
-	-- { key = "l", mods = "LEADER", action = act.ActivatePaneDirection("Right") },
 	{ key = "x", mods = "LEADER", action = act.CloseCurrentPane({ confirm = true }) },
 	{ key = "z", mods = "LEADER", action = act.TogglePaneZoomState },
 	{ key = "o", mods = "LEADER", action = act.RotatePanes("Clockwise") },
@@ -217,8 +213,40 @@ wezterm.on("update-status", function(window, pane)
 		return string.gsub(s, "(.*[/\\])(.*)", "%2")
 	end
 	-- CWD and CMD could be nil (e.g. viewing log using Ctrl-Alt-l). Not a big deal, but check in case
-	local cwd = pane:get_current_working_dir()
-	cwd = cwd and basename(cwd) or ""
+	local cwd_uri = pane:get_current_working_dir()
+	local cwd = ""
+	local hostname = ""
+	if cwd_uri then
+		if type(cwd_uri) == "userdata" then
+			-- Running on a newer version of wezterm and we have
+			-- a URL object here, making this simple!
+			cwd = cwd_uri.path
+			hostname = cwd_uri.host or wezterm.hostname()
+		else
+			-- an older version of wezterm, 20230712-072601-f4abf8fd or earlier,
+			-- which doesn't have the Url object
+			cwd_uri = cwd_uri:sub(8)
+			local slash = cwd_uri:find("/")
+			if slash then
+				hostname = cwd_uri:sub(1, slash - 1)
+				-- and extract the cwd from the uri, decoding %-encoding
+				cwd = cwd_uri:sub(slash):gsub("%%(%x%x)", function(hex)
+					return string.char(tonumber(hex, 16))
+				end)
+			end
+		end
+
+		-- Remove the domain name portion of the hostname
+		local dot = hostname:find("[.]")
+		if dot then
+			hostname = hostname:sub(1, dot - 1)
+		end
+		if hostname == "" then
+			hostname = wezterm.hostname()
+		end
+	end
+
+	-- cwd = cwd and basename(cwd) or ""
 	-- Current command
 	local cmd = pane:get_foreground_process_name()
 	cmd = cmd and basename(cmd) or ""
@@ -236,10 +264,10 @@ wezterm.on("update-status", function(window, pane)
 
 	-- Right status
 	window:set_right_status(wezterm.format({
-		-- Wezterm has a built-in nerd fonts
-		-- https://wezfurlong.org/wezterm/config/lua/wezterm/nerdfonts.html
 		{ Text = wezterm.nerdfonts.md_folder .. "  " .. cwd },
 		{ Text = " | " },
+		-- { Text = wezterm.nerdfonts.md_folder .. "  " .. hostname },
+		-- { Text = " | " },
 		{ Foreground = { Color = "#e0af68" } },
 		{ Text = wezterm.nerdfonts.fa_code .. "  " .. cmd },
 		"ResetAttributes",
@@ -248,16 +276,5 @@ wezterm.on("update-status", function(window, pane)
 		{ Text = "  " },
 	}))
 end)
-
---[[ Appearance setting for when I need to take pretty screenshots
-config.enable_tab_bar = false
-config.window_padding = {
-  left = '0.5cell',
-  right = '0.5cell',
-  top = '0.5cell',
-  bottom = '0cell',
-
-}
---]]
 
 return config
