@@ -10,10 +10,12 @@ end
 config.font = wezterm.font("Iosevka Nerd Font")
 config.font_size = 18.0
 
-config.default_cursor_style = "BlinkingBlock"
-config.cursor_blink_ease_in = "Constant"
-config.cursor_blink_ease_out = "Constant"
-config.cursor_blink_rate = 600
+config.animation_fps = 60
+
+config.default_cursor_style = "SteadyBlock"
+-- config.cursor_blink_ease_in = "Constant"
+-- config.cursor_blink_ease_out = "Constant"
+config.cursor_blink_rate = 0
 
 config.colors = {
 	cursor_bg = "#ffffff",
@@ -265,11 +267,11 @@ wezterm.on("update-status", function(window, pane)
 	-- Right status
 	window:set_right_status(wezterm.format({
 		{ Text = wezterm.nerdfonts.md_folder .. "  " .. cwd },
-		{ Text = " | " },
+		-- { Text = " | " },
 		-- { Text = wezterm.nerdfonts.md_folder .. "  " .. hostname },
 		-- { Text = " | " },
-		{ Foreground = { Color = "#e0af68" } },
-		{ Text = wezterm.nerdfonts.fa_code .. "  " .. cmd },
+		-- { Foreground = { Color = "#e0af68" } },
+		-- { Text = wezterm.nerdfonts.fa_code .. "  " .. cmd },
 		"ResetAttributes",
 		{ Text = " | " },
 		{ Text = wezterm.nerdfonts.md_clock .. "  " .. time .. " UTC" },
