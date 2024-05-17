@@ -12,13 +12,15 @@ config.font_size = 18.0
 
 config.animation_fps = 60
 
+config.window_background_opacity = 1
+
 config.default_cursor_style = "SteadyBlock"
 -- config.cursor_blink_ease_in = "Constant"
 -- config.cursor_blink_ease_out = "Constant"
 config.cursor_blink_rate = 0
 
 config.colors = {
-	cursor_bg = "#ffffff",
+	cursor_bg = "#FFFF00",
 	cursor_border = "#ffffff",
 	cursor_fg = "#000000",
 }

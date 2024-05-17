@@ -4,6 +4,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=/Users/neo/.local/bin:$PATH
 export PATH=/opt/homebrew/bin:$PATH
+export PATH=/usr/local/bin:$PATH
 
 . "$HOME/.cargo/env"
 
