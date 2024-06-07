@@ -1,5 +1,3 @@
-# Q pre block. Keep at the top of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 export PATH=/Users/neo/.local/bin:$PATH
@@ -8,15 +6,57 @@ export PATH=/usr/local/bin:$PATH
 
 . "$HOME/.cargo/env"
 
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
+# Remove "zi" alias for default zoxide alias to work
+zinit ice atload'unalias zi'
+
+# Alias
+alias vi="nvim"
+alias ls='eza --icons -F -H --group-directories-first --git'
+alias ll='ls -alF'
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-
 export ZSH_PLUGINS="$HOME/.zsh-plugins"
-
 export XDG_CONFIG_HOME="$HOME/.config"
 
-# ZSH_THEME="powerlevel9k/powerlevel9k"
+# zinit plugins
+zinit light zsh-users/zsh-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light Aloxaf/fzf-tab
 
+bindkey '^y' autosuggest-accept
+bindkey '^p' history-search-backward
+
+# completions
+autoload -U compinit && compinit
+
+# History
+HISTSIZE=5000
+HISTFILE=~/.zsh_history
+SAVEHIST=$HISTSIZE
+HISTDUP=erase
+setopt appendhistory
+setopt sharehistory
+setopt hist_ignore_space
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_dups
+
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:z:*' fzf-preview 'ls --color $realpath'
+
+zinit cdreplay -q
+
+# ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
@@ -27,58 +67,28 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export LC_ALL=en_US.UTF-8
 
 eval $(thefuck --alias)
-eval "$(zoxide init zsh)"
 eval "$(fzf --zsh)"
-
+eval "$(gh copilot alias -- zsh)"
 
 plugins=(
   git
-  autojump
+#   autojump
 )
 
 source $ZSH/oh-my-zsh.sh
 # source $ZSH_PLUGINS/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-source $ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh
-# zsh vi mode
-# source $(brew --prefix)/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='nvim'
-# else
-#   export EDITOR='nvim'
-# fi
+# source $ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source $ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 export EDITOR='nvim'
 export VISUAL="$EDITOR"
-
-alias vi="nvim"
-alias ls='eza --icons -F -H --group-directories-first --git'
-alias ll='ls -alF'
 
 # nvm
 export NVM_DIR="${HOME}/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-# #pyenv
-# export PYENV_ROOT="$HOME/.pyenv"
-# command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-# eval "$(pyenv init -)"
-#
-# #jenv
-# export PATH="$HOME/.jenv/bin:$PATH"
-# eval "$(jenv init -)"
-#
-# # rbenv PATH
-# [[ -d ~/.rbenv ]] &&
-#   export PATH=${HOME}/.rbenv/bin:${PATH} &&
-#   eval "$(rbenv init -)"
-
 # Run neofetch
 # neofetch
 
+eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
-
-# Q post block. Keep at the bottom of this file.
-[[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"

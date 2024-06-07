@@ -12,7 +12,8 @@ config.font_size = 18.0
 
 config.animation_fps = 60
 
-config.window_background_opacity = 1
+config.window_background_opacity = 0.75
+config.macos_window_background_blur = 15
 
 config.default_cursor_style = "SteadyBlock"
 -- config.cursor_blink_ease_in = "Constant"
