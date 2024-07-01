@@ -1,6 +1,23 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
+local get_last_folder_segment = function(cwd)
+	if cwd == nil then
+		return "N/A" -- or some default value you prefer
+	end
+
+	-- Strip off 'file:///' if present
+	local pathStripped = cwd:match("^file:///(.+)") or cwd
+	-- Normalize backslashes to slashes for Windows paths
+	pathStripped = pathStripped:gsub("\\", "/")
+	-- Split the path by '/'
+	local path = {}
+	for segment in string.gmatch(pathStripped, "[^/]+") do
+		table.insert(path, segment)
+	end
+	return path[#path] -- returns the last segment
+end
+
 local config = {}
 -- Use config builder object if possible
 if wezterm.config_builder then
@@ -19,6 +36,8 @@ config.default_cursor_style = "SteadyBlock"
 -- config.cursor_blink_ease_in = "Constant"
 -- config.cursor_blink_ease_out = "Constant"
 config.cursor_blink_rate = 0
+
+config.tab_max_width = 20
 
 config.colors = {
 	cursor_bg = "#FFFF00",
@@ -259,6 +278,16 @@ wezterm.on("update-status", function(window, pane)
 	-- Time
 	local time = wezterm.strftime_utc("%Y-%m-%d %H:%M:%S")
 
+	wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+		local pane = tab.active_pane
+		local cwd = (pane.current_working_dir and pane.current_working_dir.path) or nil
+		local cmd = pane.foreground_process_name or "N/A"
+		local title = tab.tab_id .. " " .. get_last_folder_segment(cwd) .. ":" .. get_last_folder_segment(cmd)
+		return {
+			{ Text = " " .. title .. " " },
+		}
+	end)
+
 	-- Left status (left of the tab line)
 	window:set_left_status(wezterm.format({
 		{ Foreground = { Color = stat_color } },
@@ -274,7 +303,7 @@ wezterm.on("update-status", function(window, pane)
 		-- { Text = wezterm.nerdfonts.md_folder .. "  " .. hostname },
 		-- { Text = " | " },
 		-- { Foreground = { Color = "#e0af68" } },
-		-- { Text = wezterm.nerdfonts.fa_code .. "  " .. cmd },
+		{ Text = wezterm.nerdfonts.fa_code .. "  " .. cmd },
 		"ResetAttributes",
 		{ Text = " | " },
 		{ Text = wezterm.nerdfonts.md_clock .. "  " .. time .. " UTC" },
