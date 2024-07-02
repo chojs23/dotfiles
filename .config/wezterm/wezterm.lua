@@ -282,7 +282,7 @@ wezterm.on("update-status", function(window, pane)
 		local pane = tab.active_pane
 		local cwd = (pane.current_working_dir and pane.current_working_dir.path) or nil
 		local cmd = pane.foreground_process_name or "N/A"
-		local title = tab.tab_id .. " " .. get_last_folder_segment(cwd) .. ":" .. get_last_folder_segment(cmd)
+		local title = tab.tab_index .. " " .. get_last_folder_segment(cwd) .. ":" .. get_last_folder_segment(cmd)
 		return {
 			{ Text = " " .. title .. " " },
 		}
