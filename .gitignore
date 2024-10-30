@@ -28,6 +28,7 @@
 !.gitignore
 !.gitignore.global
 !is_vim.sh
+!open_nvim.txt
 !.ideavimrc
 !Dockerfile
 

@@ -10,14 +10,14 @@ children=()
 pids=($(ps -o pid= -t $tty))
 
 while read -r pid ppid; do
-	[[ -n pid && pid -ne ppid ]] && children[ppid]+=" $pid"
+  [[ -n pid && pid -ne ppid ]] && children[ppid]+=" $pid"
 done <<<"$(ps -Ao pid=,ppid=)"
 
 # Get all descendant pids of processes in $tty with BFS
 idx=0
 while ((${#pids[@]} > idx)); do
-	pid=${pids[idx++]}
-	pids+=(${children[pid]-})
+  pid=${pids[idx++]}
+  pids+=(${children[pid]-})
 done
 
 # Check whether any child pids are vim
