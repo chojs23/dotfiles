@@ -14,6 +14,8 @@
 !.config/starship.toml
 !.config/wezterm
 !.config/wezterm/*
+!.config/git
+!.config/git/**/*
 
 
 

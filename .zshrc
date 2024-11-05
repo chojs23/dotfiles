@@ -1,5 +1,15 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+# XDG base directories.
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_PICTURES_DIR="$HOME/Pictures"
+export XDG_STATE_HOME="$HOME/.local/state"
+
+# Make sure this stuff is in the path.
+export PATH="$HOME/.cargo/bin:$PATH" # Cargo
+export PATH="$HOME/.local/bin:$PATH" # Local scripts
 export PATH=/Users/neo/.local/bin:$PATH
 export PATH=/opt/homebrew/bin:$PATH
 export PATH=/usr/local/bin:$PATH
@@ -17,7 +27,6 @@ zinit ice atload'unalias zi'
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 export ZSH_PLUGINS="$HOME/.zsh-plugins"
-export XDG_CONFIG_HOME="$HOME/.config"
 
 # zinit plugins
 zinit light zsh-users/zsh-syntax-highlighting
