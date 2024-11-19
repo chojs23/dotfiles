@@ -12,6 +12,7 @@ export PATH="$HOME/.cargo/bin:$PATH" # Cargo
 export PATH="$HOME/.local/bin:$PATH" # Local scripts
 export PATH=/Users/neo/.local/bin:$PATH
 export PATH=/opt/homebrew/bin:$PATH
+export PATH=/opt/homebrew/opt/openjdk/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 
 . "$HOME/.cargo/env"
@@ -96,6 +97,10 @@ export NVM_DIR="$HOME/.nvm"
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+# jenv
+export PATH="$HOME/.jenv/bin:$PATH"
+eval "$(jenv init -)"
 
 # Alias
 alias vi="nvim"

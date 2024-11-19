@@ -142,6 +142,13 @@ config.keys = {
 		action = act.ActivateKeyTable({ name = "resize_pane", one_shot = false }),
 	},
 
+	-- Back to last tab
+	{
+		key = "phys:Tab",
+		mods = "CTRL",
+		action = wezterm.action.ActivateLastTab,
+	},
+
 	-- move between split panes
 	split_nav("move", "h"),
 	split_nav("move", "j"),

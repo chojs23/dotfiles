@@ -62,7 +62,9 @@ set virtualedit=block " Allow cursor to move where there is no text in visual bl
 set wildmode=longest:full,full " Command-line completion mode
 set winminwidth=5 " Minimum window width
 set wrap " Disable line wrap
-set guicursor=n-v-c-i:block
+"set guicursor=n-v-c-i:block
+set guicursor = ""
+set guicursor = "a:blinkwait0-blinkon400-blinkoff250"
 
 " ================================================================================================
 " = Basic settings ===============================================================================
