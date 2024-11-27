@@ -33,6 +33,8 @@
 !open_nvim.txt
 !.ideavimrc
 !Dockerfile
+!firefox.userChrome.css
+!firefox.userContent.css
 
 !Atom_One_Dark__Material__copy.icls
 !One_Dark_Vivid_copy.icls
