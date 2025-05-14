@@ -13,6 +13,7 @@ export PATH="$HOME/.local/bin:$PATH" # Local scripts
 export PATH=/Users/neo/.local/bin:$PATH
 export PATH=/opt/homebrew/bin:$PATH
 export PATH=/opt/homebrew/opt/openjdk/bin:$PATH
+export PATH=/opt/homebrew/opt/mysql/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 
 . "$HOME/.cargo/env"
@@ -104,6 +105,7 @@ eval "$(jenv init -)"
 
 # Alias
 alias vi="nvim"
+alias vi2='NVIM_APPNAME="nvim2" nvim'
 alias ls="eza --icons -al -F -H --group-directories-first --git"
 alias ll="ls -alF"
 
