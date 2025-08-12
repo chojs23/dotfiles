@@ -105,6 +105,12 @@ eval "$(pyenv init -)"
 export PATH="$HOME/.jenv/bin:$PATH"
 eval "$(jenv init -)"
 
+export PNPM_HOME="/Users/neo/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
 # Alias
 alias vi="nvim"
 alias vi2='NVIM_APPNAME="nvim2" nvim'
@@ -117,3 +123,16 @@ alias ll="ls -alF"
 
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
+
+# pnpm
+export PNPM_HOME="/Users/neo/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/neo/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions
