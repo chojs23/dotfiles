@@ -10,7 +10,9 @@ export XDG_STATE_HOME="$HOME/.local/state"
 # Make sure this stuff is in the path.
 export PATH="$HOME/.cargo/bin:$PATH" # Cargo
 export PATH="$HOME/.local/bin:$PATH" # Local scripts
+export PATH="$HOME/go/bin:$PATH"
 export PATH=/Users/neo/.local/bin:$PATH
+export PATH=~/.local/share/nvim/mason/bin:$PATH
 export PATH=/opt/homebrew/bin:$PATH
 export PATH=/opt/homebrew/opt/openjdk/bin:$PATH
 export PATH=/opt/homebrew/opt/mysql/bin:$PATH
