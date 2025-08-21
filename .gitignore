@@ -15,7 +15,7 @@
 !.config/wezterm
 !.config/wezterm/*
 !.config/git
-!.config/git/**/*
+!.config/git/config
 
 
 
