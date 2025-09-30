@@ -32,6 +32,7 @@
 !is_vim.sh
 !open_nvim.txt
 !.ideavimrc
+!.wezterm.lua
 !Dockerfile
 !firefox.userChrome.css
 !firefox.userContent.css
