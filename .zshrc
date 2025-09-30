@@ -116,6 +116,8 @@ alias vi="nvim"
 alias vi2='NVIM_APPNAME="nvim2" nvim'
 alias ls="eza --icons -al -F -H --group-directories-first --git"
 alias ll="ls -alF"
+alias grep="rg"
+alias find="fd"
 
 
 # Run neofetch
