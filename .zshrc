@@ -123,6 +123,9 @@ alias find="fd"
 # Run neofetch
 # neofetch
 
+
+compinit
+
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
@@ -136,5 +139,4 @@ esac
 # The following lines have been added by Docker Desktop to enable Docker CLI completions.
 fpath=(/Users/neo/.docker/completions $fpath)
 autoload -Uz compinit
-compinit
 # End of Docker CLI completions
