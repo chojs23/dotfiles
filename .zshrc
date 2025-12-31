@@ -124,7 +124,7 @@ alias find="fd"
 # neofetch
 
 
-compinit
+autoload -Uz compinit && compinit
 
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"

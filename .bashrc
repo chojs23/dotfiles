@@ -25,4 +25,7 @@ export RIPGREP_CONFIG_PATH="$XDG_CONFIG_HOME/.ripgreprc"
 export EDITOR="$VISUAL"
 . "$HOME/.cargo/env"
 
+alias grep="rg"
+alias find="fd"
+
 eval "$(starship init bash)"
