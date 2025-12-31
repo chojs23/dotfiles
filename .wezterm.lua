@@ -24,11 +24,7 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
-config.font = wezterm.font("Iosevka Nerd Font Mono")
-config.font_size = 18.0
-
 config.animation_fps = 60
-
 config.window_background_opacity = 0.75
 config.macos_window_background_blur = 15
 
@@ -60,6 +56,8 @@ config.font = wezterm.font_with_fallback({
 	},
 	-- { family = "CaskaydiaCove Nerd Font", scale = 1.1 },
 })
+config.font_size = 18.0
+
 -- config.window_background_opacity = 0.9
 config.window_decorations = "RESIZE"
 config.window_close_confirmation = "AlwaysPrompt"
