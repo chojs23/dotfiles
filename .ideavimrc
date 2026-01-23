@@ -84,7 +84,6 @@ set ideajoin
 set ideastatusicon=gray
 set idearefactormode=keep
 
-set which-key
 
 " disable the timeout option
 set notimeout

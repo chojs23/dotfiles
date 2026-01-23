@@ -116,8 +116,8 @@ alias vi="nvim"
 alias vi2='NVIM_APPNAME="nvim2" nvim'
 alias ls="eza --icons -al -F -H --group-directories-first --git"
 alias ll="ls -alF"
-alias grep="rg"
-alias find="fd"
+# alias grep="rg"
+# alias find="fd"
 
 
 # Run neofetch
@@ -140,3 +140,4 @@ esac
 fpath=(/Users/neo/.docker/completions $fpath)
 autoload -Uz compinit
 # End of Docker CLI completions
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
