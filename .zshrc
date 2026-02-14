@@ -74,7 +74,6 @@ zinit cdreplay -q
 
 export LC_ALL=en_US.UTF-8
 
-eval $(thefuck --alias)
 eval "$(fzf --zsh)"
 eval "$(gh copilot alias -- zsh)"
 
