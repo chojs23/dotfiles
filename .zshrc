@@ -17,6 +17,7 @@ export PATH=/opt/homebrew/bin:$PATH
 export PATH=/opt/homebrew/opt/openjdk/bin:$PATH
 export PATH=/opt/homebrew/opt/mysql/bin:$PATH
 export PATH=/usr/local/bin:$PATH
+export PATH=/Users/neo/Desktop/personal/ec:$PATH
 
 . "$HOME/.cargo/env"
 
@@ -75,7 +76,6 @@ zinit cdreplay -q
 export LC_ALL=en_US.UTF-8
 
 eval "$(fzf --zsh)"
-eval "$(gh copilot alias -- zsh)"
 
 plugins=(
   git
@@ -140,3 +140,10 @@ fpath=(/Users/neo/.docker/completions $fpath)
 autoload -Uz compinit
 # End of Docker CLI completions
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# bun completions
+[ -s "/Users/neo/.bun/_bun" ] && source "/Users/neo/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
