@@ -25,7 +25,7 @@ if wezterm.config_builder then
 end
 
 config.animation_fps = 60
-config.window_background_opacity = 0.75
+config.window_background_opacity = 1
 config.macos_window_background_blur = 15
 
 config.default_cursor_style = "SteadyBlock"
