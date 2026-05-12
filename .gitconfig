@@ -1,6 +1,6 @@
 [user]
 	email = chojs990222@gmail.com
-	name = neo
+	name = Neo
 [init]
 	defaultBranch = main
 [core]
@@ -31,8 +31,8 @@
 	ui = true
 [github]
 	user = chojs23
-[credential]
-	helper = osxkeychain # For macOS
+; [credential]
+; 	helper = osxkeychain # For macOS
 
 [alias]
 lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)' --all

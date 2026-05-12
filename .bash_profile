@@ -1,3 +1,5 @@
+[ -f "$HOME/.bashrc" ] && source "$HOME/.bashrc"
+
 export EDITOR='nvim'
 export VISUAL="$EDITOR"
 . "$HOME/.cargo/env"
@@ -7,3 +9,5 @@ export VISUAL="$EDITOR"
 if [[ $- == *i* ]] && [[ -x /opt/homebrew/bin/brew ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
+
+. "$HOME/.local/share/../bin/env"

@@ -1,23 +1,4 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-# XDG base directories.
-export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$HOME/.local/share"
-export XDG_PICTURES_DIR="$HOME/Pictures"
-export XDG_STATE_HOME="$HOME/.local/state"
-
-# Make sure this stuff is in the path.
-export PATH="$HOME/.cargo/bin:$PATH" # Cargo
-export PATH="$HOME/.local/bin:$PATH" # Local scripts
-export PATH="$HOME/go/bin:$PATH"
-export PATH=/Users/neo/.local/bin:$PATH
-export PATH=~/.local/share/nvim/mason/bin:$PATH
-export PATH=/opt/homebrew/bin:$PATH
-export PATH=/opt/homebrew/opt/openjdk/bin:$PATH
-export PATH=/opt/homebrew/opt/mysql/bin:$PATH
-export PATH=/usr/local/bin:$PATH
-export PATH=/Users/neo/Desktop/personal/ec:$PATH
+[ -f "$HOME/.shell_common" ] && source "$HOME/.shell_common"
 
 . "$HOME/.cargo/env"
 
@@ -79,8 +60,6 @@ zinit cdreplay -q
 
 export LC_ALL=en_US.UTF-8
 
-eval "$(fzf --zsh)"
-
 plugins=(
   git
 #   autojump
@@ -94,19 +73,15 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR='nvim'
 export VISUAL="$EDITOR"
 
-# nvm
 export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-# jenv
-export PATH="$HOME/.jenv/bin:$PATH"
-eval "$(jenv init -)"
 
 export PNPM_HOME="/Users/neo/.local/share/pnpm"
 case ":$PATH:" in
@@ -151,3 +126,11 @@ autoload -Uz compinit
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+# End of Docker CLI completions
+
+# opencode
+export PATH=/home/conyneo/.opencode/bin:$PATH
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+
+. "$HOME/.local/share/../bin/env"
