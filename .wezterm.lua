@@ -1,30 +1,17 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 
-local get_last_folder_segment = function(cwd)
-	if cwd == nil then
-		return "N/A" -- or some default value you prefer
-	end
-
-	-- Strip off 'file:///' if present
-	local pathStripped = cwd:match("^file:///(.+)") or cwd
-	-- Normalize backslashes to slashes for Windows paths
-	pathStripped = pathStripped:gsub("\\", "/")
-	-- Split the path by '/'
-	local path = {}
-	for segment in string.gmatch(pathStripped, "[^/]+") do
-		table.insert(path, segment)
-	end
-	return path[#path] -- returns the last segment
-end
-
 local config = {}
 -- Use config builder object if possible
 if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
-config.animation_fps = 60
+config.font = wezterm.font("Iosevka Nerd Font Mono")
+config.font_size = 18.0
+config.enable_kitty_keyboard = true
+config.animation_fps = 120
+
 config.window_background_opacity = 1
 config.macos_window_background_blur = 15
 
@@ -56,8 +43,6 @@ config.font = wezterm.font_with_fallback({
 	},
 	-- { family = "CaskaydiaCove Nerd Font", scale = 1.1 },
 })
-config.font_size = 18.0
-
 -- config.window_background_opacity = 0.9
 config.window_decorations = "RESIZE"
 config.window_close_confirmation = "AlwaysPrompt"
@@ -126,9 +111,6 @@ config.keys = {
 	{ key = "a", mods = "LEADER|CTRL", action = act.SendKey({ key = "a", mods = "CTRL" }) },
 	{ key = "c", mods = "LEADER", action = act.ActivateCopyMode },
 	{ key = "phys:Space", mods = "LEADER", action = act.ActivateCommandPalette },
-
-	-- Shift-Enter to send a literal Enter
-	{ key = "Enter", mods = "SHIFT", action = wezterm.action({ SendString = "\x1b\r" }) },
 
 	-- Pane keybindings
 	{ key = "-", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
@@ -225,6 +207,67 @@ config.key_tables = {
 config.use_fancy_tab_bar = false
 config.status_update_interval = 1000
 config.tab_bar_at_bottom = true
+
+local get_last_folder_segment = function(value)
+	if value == nil then
+		return "N/A"
+	end
+
+	local s = tostring(value)
+
+	if s == "" then
+		return "N/A"
+	end
+
+	local pathStripped = s:match("^file:///(.+)") or s
+	pathStripped = pathStripped:gsub("\\", "/")
+
+	local last = nil
+	for segment in string.gmatch(pathStripped, "[^/]+") do
+		last = segment
+	end
+
+	return last or "N/A"
+end
+
+wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
+	local active_pane = tab.active_pane
+
+	local index = 0
+	if tab and tab.tab_index ~= nil then
+		index = tab.tab_index + 1
+	end
+
+	local cwd = "N/A"
+	if active_pane and active_pane.current_working_dir then
+		local current_working_dir = active_pane.current_working_dir
+
+		if type(current_working_dir) == "userdata" then
+			cwd = current_working_dir.path or "N/A"
+		elseif type(current_working_dir) == "table" then
+			cwd = current_working_dir.path or "N/A"
+		else
+			cwd = tostring(current_working_dir)
+		end
+	end
+
+	local cmd = "N/A"
+	if active_pane and active_pane.foreground_process_name then
+		cmd = tostring(active_pane.foreground_process_name)
+	end
+
+	local title = string.format(
+		"%s %s:%s",
+		tostring(index),
+		tostring(get_last_folder_segment(cwd) or "N/A"),
+		tostring(get_last_folder_segment(cmd) or "N/A")
+	)
+
+	return {
+		{ Text = " " .. title .. " " },
+	}
+end)
+
 wezterm.on("update-status", function(window, pane)
 	-- Workspace name
 	local stat = window:active_workspace()
@@ -286,16 +329,6 @@ wezterm.on("update-status", function(window, pane)
 
 	-- Time
 	local time = wezterm.strftime_utc("%Y-%m-%d %H:%M:%S")
-
-	wezterm.on("format-tab-title", function(tab, tabs, panes, config, hover, max_width)
-		local pane = tab.active_pane
-		local cwd = (pane.current_working_dir and pane.current_working_dir.path) or nil
-		local cmd = pane.foreground_process_name or "N/A"
-		local title = tab.tab_index + 1 .. " " .. get_last_folder_segment(cwd) .. ":" .. get_last_folder_segment(cmd)
-		return {
-			{ Text = " " .. title .. " " },
-		}
-	end)
 
 	-- Left status (left of the tab line)
 	window:set_left_status(wezterm.format({
