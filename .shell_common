@@ -1,0 +1,18 @@
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_PICTURES_DIR="$HOME/Pictures"
+export XDG_STATE_HOME="$HOME/.local/state"
+
+export PATH="$HOME/.cargo/bin:$PATH" # Cargo
+export PATH="$HOME/.local/bin:$PATH" # Local scripts
+export PATH="$HOME/go/bin:$PATH"
+export PATH=/Users/neo/.local/bin:$PATH
+export PATH=~/.local/share/nvim/mason/bin:$PATH
+export PATH=/opt/homebrew/bin:$PATH
+export PATH=/opt/homebrew/opt/openjdk/bin:$PATH
+export PATH=/opt/homebrew/opt/mysql/bin:$PATH
+export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/go/bin:$PATH
+
+export PATH=/home/conyneo/.nvm:$PATH

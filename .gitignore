@@ -16,6 +16,7 @@
 !.config/wezterm/*
 !.config/git
 !.config/git/config
+!.shell_common
 
 
 
