@@ -70,7 +70,7 @@ source $ZSH/oh-my-zsh.sh
 # source $ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # source $ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh
 
-export EDITOR='nvim'
+export EDITOR="nvim"
 export VISUAL="$EDITOR"
 
 export NVM_DIR="$HOME/.nvm"
