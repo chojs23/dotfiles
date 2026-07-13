@@ -20,6 +20,8 @@ config.default_cursor_style = "SteadyBlock"
 -- config.cursor_blink_ease_out = "Constant"
 config.cursor_blink_rate = 0
 
+config.enable_kitty_keyboard = true
+
 config.tab_max_width = 20
 
 config.colors = {
@@ -111,6 +113,13 @@ config.keys = {
 	{ key = "a", mods = "LEADER|CTRL", action = act.SendKey({ key = "a", mods = "CTRL" }) },
 	{ key = "c", mods = "LEADER", action = act.ActivateCopyMode },
 	{ key = "phys:Space", mods = "LEADER", action = act.ActivateCommandPalette },
+
+	-- Send a newline when pressing SHIFT+ENTER
+	{
+		key = "Enter",
+		mods = "SHIFT",
+		action = wezterm.action.SendString("\x0a"),
+	},
 
 	-- Pane keybindings
 	{ key = "-", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
