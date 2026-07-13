@@ -1,5 +1,5 @@
 os:
-  editPreset: "nvim"
+  editPreset: "nvim-remote"
 git:
   log:
     order: default
