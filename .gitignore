@@ -1,8 +1,6 @@
 *
 
 !.config/
-!.config/karabiner/
-!.config/karabiner/**/*
 !.config/nvim/
 !.config/nvim/**/*
 !.config/fish
@@ -18,13 +16,9 @@
 !.config/git/config
 !.shell_common
 
-
-
-!Brewfile
 !.zshrc
 !.tmux.conf
 !.vimrc
-!iterm2.Profiles.json
 !.bash_profile
 !.bashrc
 !.gitconfig
@@ -32,13 +26,10 @@
 !.gitignore.global
 !is_vim.sh
 !open_nvim.txt
-!.ideavimrc
 !.wezterm.lua
 !Dockerfile
 !firefox.userChrome.css
 !firefox.userContent.css
 
-!Atom_One_Dark__Material__copy.icls
-!One_Dark_Vivid_copy.icls
 
 **/.DS_Store

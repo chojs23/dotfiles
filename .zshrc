@@ -11,8 +11,6 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 [ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
 [ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 source "${ZINIT_HOME}/zinit.zsh"
-# Remove "zi" alias for default zoxide alias to work
-zinit ice atload'unalias zi'
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -50,8 +48,6 @@ zstyle ':fzf-tab:complete:z:*' fzf-preview 'ls --color $realpath'
 
 zinit cdreplay -q
 
-# ZSH_THEME="powerlevel9k/powerlevel9k"
-
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
@@ -62,13 +58,9 @@ export LC_ALL=en_US.UTF-8
 
 plugins=(
   git
-#   autojump
 )
 
 source $ZSH/oh-my-zsh.sh
-# source $ZSH_PLUGINS/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-# source $ZSH_PLUGINS/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# source $ZSH_PLUGINS/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 export EDITOR="nvim"
 export VISUAL="$EDITOR"
@@ -83,23 +75,10 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
 
 
-export PNPM_HOME="/Users/neo/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-
 # Alias
 alias vi="nvim"
-alias vi2='NVIM_APPNAME="nvim2" nvim'
 alias ls="eza --icons -al -F -H --group-directories-first --git"
 alias ll="ls -alF"
-# alias grep="rg"
-# alias find="fd"
-
-
-# Run neofetch
-# neofetch
 
 
 autoload -Uz compinit && compinit
@@ -114,10 +93,8 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-# The following lines have been added by Docker Desktop to enable Docker CLI completions.
-fpath=(/Users/neo/.docker/completions $fpath)
+
 autoload -Uz compinit
-# End of Docker CLI completions
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # bun completions
@@ -126,11 +103,5 @@ autoload -Uz compinit
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
-# End of Docker CLI completions
-
-# opencode
-export PATH=/home/conyneo/.opencode/bin:$PATH
-
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
 
 . "$HOME/.local/share/../bin/env"
