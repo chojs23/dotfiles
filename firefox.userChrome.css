@@ -28,3 +28,90 @@ findbar checkbox[checked="true"] {
   background: var(--button-active-bgcolor);
   transition: 0.1s ease-in-out;
 }
+
+/* Firefox multi-row tabs */
+
+:root {
+  --multirow-n-rows: 3;
+  --multirow-tab-min-width: 120px;
+  --multirow-tab-dynamic-width: 1;
+}
+
+#tabbrowser-tabs[orient="horizontal"] {
+  min-height: unset !important;
+  padding-inline-start: 0 !important;
+
+  --uc-scrollbutton-display-model: none;
+  --uc-scrollbox-display-model: contents;
+
+  flex-wrap: wrap;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  max-height: calc(
+    (var(--tab-min-height) + 2 * var(--tab-block-margin, 0px)) *
+      var(--multirow-n-rows)
+  );
+
+  scrollbar-width: thin;
+  scrollbar-gutter: stable;
+  scroll-snap-type: y mandatory;
+}
+
+@-moz-document url(chrome://browser/content/browser.xhtml)
+{
+  #scrollbutton-up ~ spacer,
+  #scrollbutton-up,
+  #scrollbutton-down {
+    display: var(--uc-scrollbutton-display-model, initial);
+  }
+
+  #pinned-tabs-container[orient="horizontal"],
+  #tabbrowser-arrowscrollbox[orient="horizontal"],
+  scrollbox[part][orient="horizontal"] > slot,
+  scrollbox[part="scrollbox"][orient="horizontal"] {
+    display: var(--uc-scrollbox-display-model, initial) !important;
+  }
+}
+
+.tabbrowser-tab {
+  scroll-snap-align: start;
+}
+
+#tabbrowser-tabs .tabbrowser-tab[pinned] {
+  position: static !important;
+  margin-inline-start: 0 !important;
+}
+
+:where(#tabbrowser-tabs[orient="horizontal"])
+  .tabbrowser-tab[fadein]:not([pinned]) {
+  min-width: var(--multirow-tab-min-width) !important;
+  flex-grow: var(--multirow-tab-dynamic-width) !important;
+}
+
+.tabbrowser-tab > stack {
+  width: 100%;
+  height: 100%;
+}
+
+#tabs-newtab-button {
+  margin-bottom: 0 !important;
+}
+
+#tabbrowser-tabs[hasadjacentnewtabbutton][overflow]
+  > #tabbrowser-arrowscrollbox
+  > #tabbrowser-arrowscrollbox-periphery
+  > #tabs-newtab-button {
+  display: flex !important;
+}
+
+#alltabs-button[removable="false"],
+:root:not([customizing]) #TabsToolbar #new-tab-button,
+#tabbrowser-arrowscrollbox > spacer,
+.tabbrowser-tab::after {
+  display: none !important;
+}
+
+tab-group[collapsed] > .tabbrowser-tab[fadein]:not([pinned]) {
+  min-width: 0 !important;
+}
