@@ -87,7 +87,7 @@ eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
 # pnpm
-export PNPM_HOME="/Users/neo/.local/share/pnpm"
+export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
@@ -98,7 +98,7 @@ autoload -Uz compinit
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # bun completions
-[ -s "/Users/neo/.bun/_bun" ] && source "/Users/neo/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
