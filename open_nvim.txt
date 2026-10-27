@@ -1,12 +1,4 @@
-on run {input, parameters}
-    set cmd to "nvim"
-    
-    if input is not {} then
-        set filePath to POSIX path of item 1 of input
-        set cmd to "/usr/local/bin/nvim " & quoted form of filePath
-    end if
-    
-    set wezCmd to "/opt/homebrew/bin/wezterm-gui start -- " & cmd
-    
-    do shell script "zsh -l -c " & quoted form of wezCmd
-end run
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+
+exec /Applications/WezTerm.app/Contents/MacOS/wezterm start \
+  --new-tab -- /usr/local/bin/nvim -- "$@"
